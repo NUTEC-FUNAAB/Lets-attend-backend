@@ -34,20 +34,19 @@ def login():
     email = credentials.get('email')
     password = credentials.get('password')
 
-    all_objs = storage.all('User')
-    user = None
-    for obj in all_objs.values():
-        if obj.email == email:
-            hash = md5()
-            hash.update(password.encode("utf-8"))
-            pass_hash = hash.hexdigest()
-            if obj.password == pass_hash:
-                user = obj
-                break
-            else:
-                response = jsonify({'message': 'Incorrect Password'})
-                return make_response(response, 401)
-    if user:
+    user = storage.lookup(email)
+    if not user:
+        return make_response(
+            jsonify({'message': 'User with this email not found'}),
+            404)
+
+    hash = md5()
+    hash.update(password.encode("utf-8"))
+    pass_hash = hash.hexdigest()
+    if user.password != pass_hash:
+        response = jsonify({'message': 'Incorrect Password'})
+        return make_response(response, 401)
+    else:
         login_user(user, remember=True, duration=timedelta(days=30))
         token = jwt.encode(
             {'user_id': user.id},
@@ -60,10 +59,6 @@ def login():
                                           'user': user_dict}), 200)
         response.set_cookie('token', token, httponly=False)
         return response
-    else:
-        return make_response(
-            jsonify({'message': 'User with this email not found'}),
-            404)
 
 
 @auth.route('/logout')

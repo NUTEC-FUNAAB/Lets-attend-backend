@@ -102,6 +102,16 @@ class Storage:
                 obj = None
 
         return obj
+    
+    def lookup(self, email):
+        """ gets an object by its email """
+
+        with self.session_scope() as session:
+            try:
+                obj = session.query(User).filter(User.email == email).one()
+            except Exception:
+                obj = None
+        return obj
 
     def count(self, cls=None):
         """ Returns the number of objects of a class """
