@@ -74,7 +74,7 @@ def create_user():
     storage.save()
     login_user(instance, remember=True, duration=timedelta(days=30))
     token = jwt.encode(
-            {'user_id': instance.id, 'user_type': 'User'},
+            {'user_id': instance.id},
             current_app.config['SECRET_KEY'],
             algorithm='HS256')
     user_data = instance.to_dict()
