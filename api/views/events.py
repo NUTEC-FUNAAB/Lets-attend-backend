@@ -30,7 +30,6 @@ from api.auths.login import (
 def all_events():
     """ Retrieves all events """
 
-    print(current_user.id)
     if request.method == 'GET':
         event_dict = storage.all('Event')
         resp = make_response(jsonify([

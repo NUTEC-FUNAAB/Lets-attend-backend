@@ -54,7 +54,6 @@ def login():
             algorithm='HS256')
 
         user_dict = user.to_dict()
-        user_dict['type'] = 'User'
         response = make_response(jsonify({'message': 'Login successful',
                                           'user': user_dict}), 200)
         response.set_cookie('token', token, httponly=False)
@@ -72,12 +71,11 @@ def logout():
     return response
 
 
-@auth.route('/authenticaed')
+@auth.route('/authenticated')
 def authorized():
     """ Checks if a user is logged in """
     if current_user.is_authenticated:
         user_dict = current_user.to_dict()
-        user_dict['type'] = 'User'
         return make_response(
             jsonify({'authenticated': True, 'user': user_dict}),
             200)
