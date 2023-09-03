@@ -1,0 +1,19 @@
+Retrieve the api stats
+---
+tags:
+  - Analytics
+responses:
+  200:
+    description: "Request returned successfully"
+    schema:
+      type: object
+      properties:
+        users:
+          type: integer
+          description: Number of users
+        events:
+          type: integer
+          description: Number of events
+      example:
+        users: 652
+        events: 52

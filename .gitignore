@@ -1,0 +1,5 @@
+.env
+regen*
+__pycache__/
+access.log
+error.log

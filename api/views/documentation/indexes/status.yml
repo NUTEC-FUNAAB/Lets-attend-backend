@@ -1,0 +1,15 @@
+Retrieves api status
+---
+tags:
+  - Analytics
+responses:
+  200:
+    description: "Status"
+    schema:
+      type: object
+      properties:
+        status:
+          type: string
+          description: Status
+      example:
+        status: "OK"

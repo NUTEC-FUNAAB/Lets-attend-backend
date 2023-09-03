@@ -1,0 +1,86 @@
+Users (Login Required)
+---
+tags:
+  - Users
+get:
+  summary: Retrieve all users
+  responses:
+    200:
+      description: List of all users
+      schema:
+        type: array
+        items:
+          $ref: "#/definitions/User"
+post:
+  summary: Create a new user
+  parameters:
+    - in: body
+      name: user
+      description: A new user to add and sign in
+      required: true
+      schema:
+        $ref: "#/definitions/User"
+  responses:
+    201:
+      description: User created and logged in
+      schema:
+        type: object
+        properties:
+          message:
+            type: string
+          user:
+            $ref: "#/definitions/User"
+    400:
+      description: Bad request, invalid JSON or missing required fields
+delete:
+  summary: Delete a user
+  parameters:
+    - in: body
+      name: user_id
+      description: ID of the user to delete (!! if empty, will delete the currently logged in user)
+      required: false
+      schema:
+        type: object
+        properties:
+          user_id:
+            type: string
+      responses:
+        202:
+          description: User Deleted and Logged out
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+definitions:
+  User:
+    type: object
+    properties:
+      first_name:
+        type: string
+        description: user data
+        example: John
+      last_name:
+        type: string
+        description: user data
+        example: Doe
+      gender:
+        type: string
+        description: user data
+        example: male
+      date_of_birth:
+        type: string
+        description: user data
+        example: "2023-09-01T17:48:40.779329"
+      email:
+        type: string
+        description: user data
+        example: JohnDoe@gmail.com
+      phone:
+        type: string
+        description: user data
+        example: 1234567890123
+      password:
+        type: string
+        description: user data
+        example: JohnPassword

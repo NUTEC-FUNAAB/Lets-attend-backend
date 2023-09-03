@@ -1,0 +1,83 @@
+API endpoints
+GET /api/v1/events/
+    ?location=string
+    ?day=string
+    ?month=string
+    ?event_type=string
+# Retrieves all events
+POST /api/v1/events/
+# Creates an event
+
+GET /api/v1/event/<event_id>/
+# Retrieves a specific event
+DELETE /api/v1/event/<event_id>/
+# Deletes a specific event
+PUT /api/v1/event/<event_id>/
+# Updates a specific event
+
+GET /api/v1/event/<event_id>/attendees/
+# Retrieves all attendees for a specific event
+GET /api/v1/event/<event_id>/attendees/<user_id>/
+# Retrieves a specific attendee for a specific event
+POST /api/v1/event/<event_id>/attendees/<user_id>/
+# Adds a specific attendee to an event
+DELETE /api/v1/event/<event_id>/attendees/<user_id>/
+# Deletes a specific attendee from an event
+
+GET /api/v1/event/<event_id>/invitees/
+# Retrieves all pending invitees for a specific event
+POST /api/v1/event/<event_id>/invitees/<user_id>/
+# Invites a specific user to an event
+DELETE /api/v1/event/<event_id>/invitees/<user_id>/
+# Deletes a specific invitee from an event
+
+
+
+GET /api/v1/users/
+    ?department=string
+    ?college=string
+# retrieves all users
+POST /api/v1/users/
+# creates a new user
+
+GET /api/v1/user/<user_id>/
+# retrieves a user
+DELETE /api/v1/user/<user_id>/
+# deletes a  user
+PUT /api/v1/user/<user_id>/
+# updates a user
+
+GET /api/v1/user/<user_id>/events/
+# retrieves all events a user will attend
+GET /api/v1/user/<user_id>/events/<event_id>/
+# retrieves a specific event a user will attend
+POST /api/v1/user/<user_id>/events/<event_id>/
+# adds a specific event a user will attend
+DELETE /api/v1/user/<user_id>/events/<event_id>/
+# deletes a specific event a user will attend
+
+
+GET /api/v1/departments/
+# retrieves all departments
+GET /api/v1/departments/<department_id>/
+# retrieves a specific department
+POST /api/v1/departments/<department_id>/
+# creates a new department
+DELETE /api/v1/departments/<department_id>/
+# deletes a department
+PUT /api/v1/departments/<department_id>/
+# updates a department
+
+
+GET /api/v1/colleges/
+# retrieves all colleges
+GET /api/v1/colleges/<college_id>/
+# retrieves a specific college
+GET /api/v1/colleges/<college_id>/departments/
+# retrieves all departments in a specific college
+POST /api/v1/colleges/<college_id>/
+# creates a new college
+DELETE /api/v1/colleges/<college_id>/
+# deletes a college
+PUT /api/v1/colleges/<college_id>/
+# updates a college

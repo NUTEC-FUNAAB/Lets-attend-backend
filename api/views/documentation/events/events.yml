@@ -1,0 +1,59 @@
+Retrieves events or adds a new event
+---
+tags:
+  - Events
+get:
+  summary: Retrieve all events
+  responses:
+    200:
+      description: List of all events
+      schema:
+        type: array
+        items:
+          $ref: '#/definitions/Event'
+post:
+  summary: Create a new event
+  parameters:
+    - in: body
+      name: event
+      description: Event object
+      required: true
+      schema:
+        $ref: '#/definitions/Event'
+  responses:
+    201:
+      description: Event created successfully
+      schema:
+        $ref: '#/definitions/Event'
+    401:
+      description: Missing required parameter
+    405:
+      description: Method not allowed
+definitions:
+  Event:
+    type: object
+    properties:
+      name:
+        type: string
+      description:
+        type: string
+      event_type:
+        type: string
+      start_time:
+        type: string
+        format: date-time
+      end_time:
+        type: string
+        format: date-time
+      location:
+        type: string
+      host:
+        type: string
+      price:
+        type: number
+    required:
+      - name
+      - description
+      - start_time
+      - end_time
+      - location

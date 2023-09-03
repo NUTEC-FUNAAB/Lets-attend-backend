@@ -1,0 +1,95 @@
+Retrieves event attendees (ID List)
+---
+tags:
+  - Events
+get:
+  summary: Retrieve attendees for an event
+  parameters:
+    - in: path
+      name: event_id
+      description: ID of the event to retrieve attendees for
+      required: true
+      type: string
+  responses:
+    200:
+      description: List of event attendees
+      schema:
+        type: array
+        items:
+          $ref: '#/definitions/User'
+    404:
+      description: Event not found
+post:
+  summary: Add a user to the list of event attendees
+  parameters:
+    - in: path
+      name: event_id
+      description: ID of the event to attend
+      required: true
+      type: string
+    - in: body
+      name: user_id
+      description: User.id string to add to event attendees
+      required: true
+      schema:
+        type: object
+        properties:
+          user_id:
+            type: string
+  responses:
+    201:
+      description: User added to event attendees
+      schema:
+        $ref: '#/definitions/User'
+    400:
+      description: Bad request, invalid JSON or missing required fields
+    404:
+      description: Event not found
+delete:
+  summary: Remove a user from the list of event attendees
+  parameters:
+    - in: path
+      name: event_id
+      description: ID of the event to remove the user from
+      required: true
+      type: string
+    - in: body
+      name: user_id
+      description: ID of the user to remove from event attendees
+      required: true
+      schema:
+        type: object
+        properties:
+          user_id:
+            type: string
+  responses:
+    202:
+      description: User removed from event attendees
+    404:
+      description: Event or user not found
+definitions:
+  User:
+    type: object
+    properties:
+      first_name:
+        type: string
+      last_name:
+        type: string
+      gender:
+        type: string
+      date_of_birth:
+        type: string
+        format: date-time
+      email:
+        type: string
+      phone:
+        type: string
+      password:
+        type: string
+    required:
+      - first_name
+      - last_name
+      - gender
+      - date_of_birth
+      - email
+      - password
