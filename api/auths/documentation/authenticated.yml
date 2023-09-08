@@ -1,0 +1,26 @@
+Check if the logged in user is authorized to perform the action
+---
+tags:
+  - Core
+responses:
+  200:
+    description: User is authorized
+    schema:
+      type: object
+      properties:
+        authenticated:
+          type: boolean
+          description: Is the user authenticated
+          example: true
+        user:
+          $ref: '#/definitions/User'
+  200-1:
+    description: User is not authorized
+    schema:
+      type: object
+      properties:
+        authenticated:
+          type: boolean
+          description: Is the user authenticated
+      example:
+        authenticated: false

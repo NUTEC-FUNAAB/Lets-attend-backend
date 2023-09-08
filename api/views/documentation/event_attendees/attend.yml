@@ -1,4 +1,4 @@
-Retrieves event attendees (ID List)
+Event attendees operations
 ---
 tags:
   - Events
@@ -10,6 +10,7 @@ get:
       description: ID of the event to retrieve attendees for
       required: true
       type: string
+      example: 8i1gaj-1sggaj-1gashrj-nmawgqj-1gawgc
   responses:
     200:
       description: List of event attendees
@@ -19,6 +20,15 @@ get:
           $ref: '#/definitions/User'
     404:
       description: Event not found
+    405:
+      description: You can only view your own attendees
+      schema:
+        type: object
+        properties:
+          message:
+            type: string
+            description: Not allowed to view this event's attendees
+            example: You can only view attendees for your own events
 post:
   summary: Add a user to the list of event attendees
   parameters:
@@ -27,24 +37,30 @@ post:
       description: ID of the event to attend
       required: true
       type: string
+      example: 8i1gaj-1sggaj-1gashrj-nmawgqj-1gawg1
     - in: body
       name: user_id
       description: User.id string to add to event attendees
-      required: true
-      schema:
-        type: object
-        properties:
-          user_id:
-            type: string
+      type: string
+      example: 8i1gaj-1sggaj-1gashrj-nmawgqj-1gawg5
   responses:
     201:
       description: User added to event attendees
       schema:
-        $ref: '#/definitions/User'
+        type: object
+        properties:
+          message:
+            type: string
+            description: Message confirming user addition
+            example: You are now attending Birthday party
+          event:
+            $ref: '#/definitions/Event'
     400:
       description: Bad request, invalid JSON or missing required fields
     404:
       description: Event not found
+    405:
+      description: No need to attend your own event or you are already attending
 delete:
   summary: Remove a user from the list of event attendees
   parameters:
@@ -53,43 +69,25 @@ delete:
       description: ID of the event to remove the user from
       required: true
       type: string
+      example: 8i1gaj-1sggaj-1gashrj-nmawgqj-1gawgj
     - in: body
       name: user_id
       description: ID of the user to remove from event attendees
-      required: true
-      schema:
-        type: object
-        properties:
-          user_id:
-            type: string
+      type: string
+      example: 8i1gaj-1sggaj-1gashrj-nmawgqj-1gawgq
   responses:
     202:
       description: User removed from event attendees
+      schema:
+        type: object
+        properties:
+          message:
+            type: string
+            description: Message confirming user removal
+            example: You are no longer attending Birthday party
+          event:
+            $ref: '#/definitions/Event'
     404:
       description: Event or user not found
-definitions:
-  User:
-    type: object
-    properties:
-      first_name:
-        type: string
-      last_name:
-        type: string
-      gender:
-        type: string
-      date_of_birth:
-        type: string
-        format: date-time
-      email:
-        type: string
-      phone:
-        type: string
-      password:
-        type: string
-    required:
-      - first_name
-      - last_name
-      - gender
-      - date_of_birth
-      - email
-      - password
+    405:
+      description: User is not attending the event or cannot unattend (host)

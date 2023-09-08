@@ -1,0 +1,33 @@
+Logs a user in, sends cookies and returns user data
+---
+tags:
+  - Core
+parameters:
+  - in: body
+    name: email
+    description: Email of the user to login
+    required: true
+    type: string
+  - in: body
+    name: password
+    description: Password of the user to login
+    required: true
+    type: string
+responses:
+  200:
+    description: User logged in successfully
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Log in the currently logged in user
+          example: Logged in
+        user:
+          $ref: '#/definitions/User'
+  400:
+    description: Bad request, invalid JSON or missing required fields
+  401:
+    description: Invalid credentials (Password)
+  404:
+    description: User not found

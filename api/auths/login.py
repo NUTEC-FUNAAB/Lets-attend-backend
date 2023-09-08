@@ -2,6 +2,7 @@
 """ Login methods module """
 from api.auths import auth
 from datetime import timedelta
+from flasgger import swag_from
 from flask import (
     current_app,
     make_response,
@@ -24,12 +25,13 @@ import jwt
     '/login',
     methods=['POST'],
     strict_slashes=False)
+@swag_from('documentation/login.yml', methods=['POST'])
 def login():
     """ Logs a user in """
     try:
         credentials = request.get_json()
     except Exception:
-        abort(401, 'Not the valid json')
+        abort(401, 'Not a valid json')
 
     email = credentials.get('email')
     password = credentials.get('password')
@@ -60,8 +62,9 @@ def login():
         return response
 
 
-@auth.route('/logout')
+@auth.route('/logout', methods=['GET'], strict_slashes=False)
 @login_required
+@swag_from('documentation/logout.yml', methods=['GET'])
 def logout():
     """ Logs a user out """
     logout_user()
@@ -71,7 +74,8 @@ def logout():
     return response
 
 
-@auth.route('/authenticated')
+@auth.route('/authenticated', methods=['GET'], strict_slashes=False)
+@swag_from('documentation/authenticated.yml', methods=['GET'])
 def authorized():
     """ Checks if a user is logged in """
     if current_user.is_authenticated:

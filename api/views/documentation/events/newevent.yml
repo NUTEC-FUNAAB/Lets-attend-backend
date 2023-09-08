@@ -1,0 +1,23 @@
+Adds a new event
+---
+tags:
+  - Events
+summary: Create a new event
+parameters:
+  - in: body
+    name: event
+    description: Event object in json format
+    required: true
+    schema:
+      $ref: '#/definitions/Event'
+      host:
+        type: null
+responses:
+  201:
+    description: Event created successfully
+    schema:
+      $ref: '#/definitions/Event'
+  401:
+    description: Missing required parameter
+  405:
+    description: Method not allowed

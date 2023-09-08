@@ -28,7 +28,7 @@ from api.auths.login import (
     strict_slashes=False
 )
 @login_required
-@swag_from('documentation/users/users.yml')
+@swag_from('documentation/users/getusers.yml')
 def all_users():
     """
         Configures GET method for the users route
@@ -44,7 +44,8 @@ def all_users():
     methods=['POST', 'DELETE'],
     strict_slashes=False
 )
-@swag_from('documentation/users/users.yml')
+@swag_from('documentation/users/newuser.yml', methods=['POST'])
+@swag_from('documentation/users/deluser.yml', methods=['DELETE'])
 def create_user():
     """ Creates a new user or signs a user up """
     if request.method == 'DELETE':
@@ -94,7 +95,9 @@ def create_user():
     strict_slashes=False
 )
 @login_required
-@swag_from('documentation/users/user.yml')
+@swag_from('documentation/users/getuser.yml', methods=['GET'])
+@swag_from('documentation/users/moduser.yml', methods=['PUT'])
+@swag_from('documentation/users/fastdeluser.yml', methods=['DELETE'])
 def user(user_id):
     """ Operations involving a specific user """
 

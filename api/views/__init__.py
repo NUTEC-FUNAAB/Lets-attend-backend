@@ -9,3 +9,4 @@ from api.views.events import *  # noqa: E402
 from api.views.event_attendees import *  # noqa: E402
 from api.views.index import *  # noqa: E402
 from api.views.users import *  # noqa: E402
+from api.views.user_events import *  # noqa: E402

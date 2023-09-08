@@ -1,0 +1,15 @@
+Retrieves events for the current user
+---
+tags:
+  - Users
+  - Events
+summary: Retrieve events for the current user
+responses:
+  200:
+    description: Events retrieved successfully
+    schema:
+      type: array
+      items:
+        $ref: '#/definitions/Event'
+  404:
+    description: User not found

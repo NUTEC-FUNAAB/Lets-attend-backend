@@ -1,0 +1,16 @@
+Logs the current user out
+---
+tags:
+  - Core
+responses:
+  200:
+    description: User logged out successfully
+    schema:
+      type: object
+      properties:
+        message:
+          type: boolean
+          description: Log out the currently logged in user
+          example: Logged out
+  401:
+    description: Unauthorized

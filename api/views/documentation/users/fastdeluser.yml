@@ -1,0 +1,23 @@
+Retrieves a user, modified and deletes a user
+---
+tags:
+  - Users
+summary: Delete a user by ID
+parameters:
+  - in: path
+    name: user_id
+    description: ID of the user to delete
+    required: true
+    type: string
+responses:
+  204:
+    description: User Deleted
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Message confirming user deletion
+          example: User Deleted
+  404:
+    description: User not found

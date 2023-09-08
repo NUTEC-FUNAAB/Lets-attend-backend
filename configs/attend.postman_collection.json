@@ -161,6 +161,14 @@
 				"url": "http://127.0.0.1:60535/api/login"
 			},
 			"response": []
+		},
+		{
+			"name": "myevents",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
 		}
 	]
 }

@@ -1,0 +1,26 @@
+Users (Login Required)
+---
+tags:
+  - Users
+summary: Create a new user
+parameters:
+  - in: body
+    name: user
+    description: A new user to add and sign in
+    required: true
+    schema:
+      $ref: '#/definitions/User'
+responses:
+  201:
+    description: User created and logged in
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Message confirming user creation
+          example: User created and logged in
+        user:
+          $ref: '#/definitions/User'
+  400:
+    description: Bad request, invalid JSON or missing required fields

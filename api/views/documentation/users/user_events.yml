@@ -1,0 +1,21 @@
+Retrieves events for a user by ID
+---
+tags:
+  - Users
+  - Events
+summary: Retrieve events for a user by ID
+parameters:
+  - in: path
+    name: user_id
+    description: ID of the user to retrieve events for
+    required: true
+    type: string
+responses:
+  200:
+    description: Events retrieved successfully
+    schema:
+      type: array
+      items:
+        $ref: '#/definitions/Event'
+  404:
+    description: User not found

@@ -26,14 +26,15 @@ from api.auths.login import (
     methods=['GET', 'POST', 'DELETE'],
     strict_slashes=False)
 @login_required
-@swag_from('documentation/event_attendees/attend.yml')
+@swag_from(
+    'documentation/event_attendees/attend.yml',
+    methods=['GET', 'POST', 'DELETE'])
 def attend(event_id):
     """ adds the current user to the attendees """
 
     session = storage.Session()
     event = session.query(Event).filter(Event.id == event_id).one()
 
-#    event = storage.get('Event', event_id) # Session().query(Event).filter(Event.id == event_id).one() # FIX STORAGE SESSIONS
     if request.method == 'GET':
         if current_user.id == event.host:
             attendees = [user.to_dict() for user in event.attendees]

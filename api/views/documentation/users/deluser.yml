@@ -1,0 +1,24 @@
+Delete a user
+---
+tags:
+  - Users
+summary: Delete a user
+parameters:
+  - in: body
+    name: user_id
+    description: ID of the user to delete (!! if empty, will delete the currently logged in user)
+    required: false
+    type: string
+    example: 8i1gaj-1sggaj-1gashrj-nmawgqj-1gawgr
+responses:
+  202:
+    description: User Deleted and Logged out
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Message confirming user deletion
+          example: User Deleted and Logged out
+  404:
+    description: Invalid user dictionary or user not found

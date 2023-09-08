@@ -1,10 +1,10 @@
 Retrieve the api stats
 ---
 tags:
-  - Analytics
+  - Core
 responses:
   200:
-    description: "Request returned successfully"
+    description: Returns user and event count
     schema:
       type: object
       properties:

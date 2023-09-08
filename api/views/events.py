@@ -26,7 +26,8 @@ from api.auths.login import (
         methods=['GET', 'POST'],
         strict_slashes=False)
 @login_required
-@swag_from('documentation/events/events.yml')
+@swag_from('documentation/events/allevents.yml', methods=['GET'])
+@swag_from('documentation/events/newevent.yml', methods=['POST'])
 def all_events():
     """ Retrieves all events """
 
@@ -67,7 +68,15 @@ def all_events():
         methods=['GET', 'PUT', 'DELETE'],
         strict_slashes=False)
 @login_required
-@swag_from('documentation/events/event.yml')
+@swag_from(
+    'documentation/events/delevent.yml',
+    methods=['DELETE'])
+@swag_from(
+    'documentation/events/getevent.yml',
+    methods=['GET'])
+@swag_from(
+    'documentation/events/modevent.yml',
+    methods=['PUT'])
 def event_manager(event_id):
     """ Handlesevent methods """
     if request.method == 'GET':

@@ -1,0 +1,22 @@
+Delete an event
+---
+tags:
+  - Events
+summary: Delete an event by ID
+parameters:
+  - in: path
+    name: event_id
+    description: ID of the event to delete
+    required: true
+    type: string
+responses:
+  204:
+    description: Event Deleted
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Message confirming event deletion
+          example: Event deleted
+    description: Event not found

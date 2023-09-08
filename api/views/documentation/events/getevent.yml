@@ -1,0 +1,18 @@
+Retrieves an event
+---
+tags:
+  - Events
+summary: Retrieve an event by ID
+parameters:
+  - in: path
+    name: event_id
+    description: ID of the event to retrieve
+    required: true
+    type: string
+responses:
+  200:
+    description: Event retrieved successfully
+    schema:
+      $ref: '#/definitions/Event'
+  404:
+    description: Event not found

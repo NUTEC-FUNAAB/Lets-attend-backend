@@ -1,0 +1,27 @@
+Retrieves a user, modified and deletes a user
+---
+tags:
+  - Users
+summary: Update a user by ID
+parameters:
+  - in: path
+    name: user_id
+    description: ID of the user to update
+    required: true
+    type: string
+    example: 8aa9a13-11grwf-2gt2e34-4tr13r-356ftr
+  - in: body
+    name: data
+    description: Updated user object
+    required: true
+    schema:
+      $ref: '#/definitions/User'
+responses:
+  200:
+    description: User updated successfully
+    schema:
+      $ref: '#/definitions/User'
+  400:
+    description: Bad request, invalid JSON or missing required fields
+  404:
+    description: User not found
