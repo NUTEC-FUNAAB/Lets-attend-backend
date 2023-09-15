@@ -85,5 +85,5 @@ Swagger(app)
 if __name__ == "__main__":
     app.run(
         host=environ.get('ATTEND_HOST', default='0.0.0.0'),
-        port=environ.get('ATTEND_PORT', default='5050'),
+        port=environ.get('ATTEND_PORT', default='5006'),
         threaded=True)

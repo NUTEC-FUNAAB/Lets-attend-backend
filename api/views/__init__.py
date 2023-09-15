@@ -3,7 +3,7 @@
 
 from flask import Blueprint
 
-app_views = Blueprint('app_views', __name__, url_prefix='/api/')
+app_views = Blueprint('app_views', __name__, url_prefix='/app/')
 
 from api.views.events import *  # noqa: E402
 from api.views.event_attendees import *  # noqa: E402
