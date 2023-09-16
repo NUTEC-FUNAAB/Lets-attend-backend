@@ -9,6 +9,11 @@ from sqlalchemy.orm import (
     scoped_session,
 )
 from sqlalchemy.pool import QueuePool
+from typing import (
+    Dict,
+    Type,
+    Union,
+)
 
 from models.base import Base
 from models.user import User
@@ -45,13 +50,13 @@ class Storage:
         if environ["DB_ATTEND_MODE"] == "test" or kwargs.get("test", False):
             Base.metadata.drop_all(self.__engine, checkfirst=True)
 
-    def reload(self):
+    def reload(self) -> None:
         """ Reloads the session and create tables """
 
         Base.metadata.create_all(self.__engine)
 
     @contextmanager
-    def session_scope(self):
+    def session_scope(self) -> None:
         """
             Creates a session, and tearsDown after control
             is transferred back
@@ -67,8 +72,11 @@ class Storage:
         finally:
             session.close()
 
-    def all(self, cls=None):
-        """ gets all objects """
+    def all(
+        self,
+        cls: Union[str, Type[User], Type[Event]] = None
+    ) -> Dict[str, Union[User, Event]]:
+        """ gets all objects or all of a specific class """
 
         objects = {}
         if cls:
@@ -89,7 +97,10 @@ class Storage:
 
         return objects
 
-    def get(self, cls, id):
+    def get(
+        self,
+        cls: Union[str, Type[User], Type[Event]],
+        id: str) -> Union[User, Event]:
         """ gets a particular object """
 
         if type(cls) is str:
@@ -102,9 +113,9 @@ class Storage:
                 obj = None
 
         return obj
-    
-    def lookup(self, email):
-        """ gets an object by its email """
+
+    def lookup(self, email: str) -> Union[User, None]:
+        """ Gets an object by its email """
 
         with self.session_scope() as session:
             try:
@@ -113,30 +124,30 @@ class Storage:
                 obj = None
         return obj
 
-    def count(self, cls=None):
+    def count(self, cls: Union[str, Type[User], Type[Event]] = None) -> int:
         """ Returns the number of objects of a class """
 
         return len(self.all(cls))
 
-    def new(self, obj):
+    def new(self, obj: Union[User, Event]) -> None:
         """ Adds an object to the current session """
 
         with self.session_scope() as session:
             session.add(obj)
 
-    def save(self):
+    def save(self) -> None:
         """ commits the current session """
 
         with self.session_scope() as session:
             session.commit()
 
-    def delete(self, obj):
+    def delete(self, obj: Union[User, Event]) -> None:
         """ deletes an object from the current session """
 
         with self.session_scope() as session:
             session.delete(obj)
 
-    def close(self):
+    def close(self) -> None:
         """ removes the current session """
 
         self.Session.remove()

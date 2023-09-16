@@ -34,7 +34,7 @@ class BaseModel:
         nullable=False
     )
 
-    def __init__(self, **kwargs):
+    def __init__(self, **kwargs) -> None:
         """ Initializes the basemodel class  """
 
         if kwargs:
