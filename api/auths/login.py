@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """ Login methods module """
-from api.auths import auth
+import jwt
+
 from datetime import timedelta
 from flasgger import swag_from
 from flask import (
@@ -10,6 +11,7 @@ from flask import (
     request,
     abort,
 )
+from flask.wrappers import Response
 from flask_login import (
     current_user,
     login_user,
@@ -17,8 +19,12 @@ from flask_login import (
     login_required,
 )
 from hashlib import md5
+from typing import (
+    TypeVar,
+)
+
+from api.auths import auth
 from models import storage
-import jwt
 
 
 @auth.route(
@@ -26,7 +32,7 @@ import jwt
     methods=['POST'],
     strict_slashes=False)
 @swag_from('documentation/login.yml', methods=['POST'])
-def login():
+def login() -> Response:
     """ Logs a user in """
     try:
         credentials = request.get_json()
@@ -58,25 +64,25 @@ def login():
         user_dict = user.to_dict()
         response = make_response(jsonify({'message': 'Login successful',
                                           'user': user_dict}), 200)
-        response.set_cookie('token', token, httponly=False)
+        response.set_cookie('token', token)
         return response
 
 
 @auth.route('/logout', methods=['GET'], strict_slashes=False)
 @login_required
 @swag_from('documentation/logout.yml', methods=['GET'])
-def logout():
+def logout() -> Response:
     """ Logs a user out """
     logout_user()
     response = make_response(
         jsonify({'message': 'Logged out'}), 200)
-    response.set_cookie('token', '', httponly=True)
+    response.set_cookie('token', '')
     return response
 
 
 @auth.route('/authenticated', methods=['GET'], strict_slashes=False)
 @swag_from('documentation/authenticated.yml', methods=['GET'])
-def authorized():
+def authorized() -> Response:
     """ Checks if a user is logged in """
     if current_user.is_authenticated:
         user_dict = current_user.to_dict()

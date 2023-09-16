@@ -4,7 +4,9 @@ from flasgger.utils import swag_from
 from flask import (
     make_response,
     jsonify,
+    render_template,
 )
+from flask.wrappers import Response
 
 from api.views import app_views
 from models import storage
@@ -19,7 +21,7 @@ def api_status():
 
 @app_views.route('/stats', methods=['GET'], strict_slashes=False)
 @swag_from('documentation/indexes/stats.yml')
-def api_stats():
+def api_stats() -> Response:
     """ Return relevant api stats """
 
     data = {
@@ -34,8 +36,9 @@ def api_stats():
 
 
 @app_views.route('/', methods=['GET', 'POST'], strict_slashes=False)
-def index():
+def index() -> str:
     """ Returns the index form """
+    return render_template('index.html')
     return """
     <!DOCTYPE html>
     <html>

@@ -8,6 +8,7 @@ from flask import (
     make_response,
     request,
 )
+from flask.wrappers import Response
 from flasgger.utils import swag_from
 
 from api.views import app_views
@@ -17,7 +18,6 @@ from models.user import User
 from api.auths.login import (
     login_required,
     current_user,
-    current_app,
 )
 
 
@@ -29,7 +29,7 @@ from api.auths.login import (
 @swag_from(
     'documentation/event_attendees/attend.yml',
     methods=['GET', 'POST', 'DELETE'])
-def attend(event_id):
+def attend(event_id: str) -> Response:
     """ adds the current user to the attendees """
 
     session = storage.Session()

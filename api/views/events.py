@@ -8,6 +8,7 @@ from flask import (
     make_response,
     request,
 )
+from flask.wrappers import Response
 from flasgger.utils import swag_from
 
 from api.views import app_views
@@ -28,7 +29,7 @@ from api.auths.login import (
 @login_required
 @swag_from('documentation/events/allevents.yml', methods=['GET'])
 @swag_from('documentation/events/newevent.yml', methods=['POST'])
-def all_events():
+def all_events() -> Response:
     """ Retrieves all events """
 
     if request.method == 'GET':
@@ -77,7 +78,7 @@ def all_events():
 @swag_from(
     'documentation/events/modevent.yml',
     methods=['PUT'])
-def event_manager(event_id):
+def event_manager(event_id) -> Response:
     """ Handlesevent methods """
     if request.method == 'GET':
         event = storage.get('Event', event_id)

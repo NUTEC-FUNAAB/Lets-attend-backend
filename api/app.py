@@ -2,16 +2,18 @@
 """ Main routes for the api """
 from dotenv.main import load_dotenv
 from flasgger import Swagger
-from flasgger.utils import swag_from
 from flask import (
     Flask,
-    render_template,
     make_response,
     jsonify,
 )
 from flask_cors import CORS
 from flask_login import LoginManager
 from os import environ
+from typing import (
+    TypeVar,
+    Union,
+)
 
 from api.views import app_views
 from api.auths import auth
@@ -41,7 +43,7 @@ cors = CORS(
 
 
 @login_manager.user_loader
-def load_user(user_id):
+def load_user(user_id: str) -> TypeVar('User'):
     """ Retrieves a user by id """
     user = storage.get('User', user_id)
     if user is not None:
@@ -49,13 +51,13 @@ def load_user(user_id):
 
 
 @app.teardown_appcontext
-def close_db(err):
+def close_db(err) -> None:
     """ Closes the storage session on an error """
     storage.close()
 
 
 @app.errorhandler(404)
-def not_found(err):
+def not_found(err) -> str:
     """
         Returns 404 Error For unidentified route
     ---

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Let's Attend - Your platform for scheduling and attending events. Sign up now to explore and join exciting events.">
+    <meta name="keywords" content="Let's Attend, events, scheduling, attending, platform">
+    <title>Let's Attend - Event Platform</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body style="background-color: white;">
+    <div class="container mt-5">
+        <h1 class="text-center text-success">Welcome to Let's Attend</h1>
+        <p class="lead text-center">Your platform for scheduling and attending events.</p>
+        <p class="text-center">Sign up now to explore and join exciting events happening near you.</p>
+
+        <form id="login-form" class="mt-4">
+            <div class="form-group">
+                <input type="text" class="form-control" name="first_name" placeholder="First Name">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="last_name" placeholder="Last Name">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="gender" placeholder="Gender">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="date_of_birth" placeholder="Date of Birth">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="phone" placeholder="Phone">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="email" placeholder="Email">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" name="password" placeholder="Password">
+            </div>
+            <button type="submit" class="btn btn-success btn-block">Sign Up</button>
+        </form>
+    </div>
+
+    <!-- Include Bootstrap JS and jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        // Your JavaScript code here
+        document.getElementById("login-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const formElements = event.target.elements;
+            const formData = {};
+            for (const element of formElements) {
+                if (element.name) {
+                    formData[element.name] = element.value;
+                }
+            }
+            // Send form data as JSON
+            fetch("/api/users", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Handle the response from the server
+                console.log(data);
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+        });
+    </script>
+</body>
+</html>
