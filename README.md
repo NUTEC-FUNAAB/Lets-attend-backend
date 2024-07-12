@@ -61,7 +61,7 @@ gunicorn --access-logfile access.log --error-logfile error.log --bind 0.0.0.0:50
 
 ### API Documentation
 
-The API documentation and schema can be found on the `/docs` route of the application.
+The API documentation and schema can be found on the `/apidocs` route of the application.
 
 ### Testing
 
