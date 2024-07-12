@@ -1,0 +1,2179 @@
+{
+	"info": {
+		"_postman_id": "499c5340-dc8b-440a-8af0-ccac12251210",
+		"name": "Lets Attend Backend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28586598"
+	},
+	"item": [
+		{
+			"name": "Analytics",
+			"item": [
+				{
+					"name": "Status",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response is JSON\", () => {",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Status schema is valid\", () => {",
+									"    const schema = {",
+									"        type: 'object',",
+									"        properties: {",
+									"            status: {",
+									"                type: 'string'",
+									"            }",
+									"        },",
+									"        required: ['status'],",
+									"        additionalProperties: false",
+									"    };",
+									"    const body = {",
+									"        status: \"OK\"",
+									"    }",
+									"    pm.response.to.have.jsonSchema(schema);",
+									"    pm.response.to.have.jsonBody(body);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/app/status/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"app",
+								"status",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Status",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/app/status/",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"app",
+										"status",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.3.4 Python/3.12.4"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Jul 2024 10:03:58 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "16"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"OK\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Stats",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response is JSON\", () => {",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Stats schema is valid\", () => {",
+									"    const schema = {",
+									"        type: 'object',",
+									"        properties: {",
+									"            events: {",
+									"                type: 'number'",
+									"            },",
+									"            users: {",
+									"                type: 'number'",
+									"            }",
+									"        },",
+									"        required: ['events', 'users'],",
+									"        additionalProperties: false",
+									"    };",
+									"    pm.response.to.have.jsonSchema(schema);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/app/stats/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"app",
+								"stats",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Stats",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/app/stats/",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"app",
+										"stats",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.3.4 Python/3.12.4"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Jul 2024 11:05:38 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "23"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"events\": 1,\n    \"users\": 3\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Account",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"let first_name = pm.variables.replaceIn('{{$randomFirstName}}');",
+									"let last_name = pm.variables.replaceIn('{{$randomLastName}}');",
+									"let gender = pm.variables.replaceIn('{{$randomBoolean}}') ? 'male' : 'female';",
+									"let date_of_birth = pm.variables.replaceIn('{{$isoTimestamp}}');",
+									"let phone = pm.variables.replaceIn('{{$randomPhoneNumber}}');",
+									"let email = pm.variables.replaceIn('{{$randomEmail}}');",
+									"",
+									"let params = {",
+									"    firstName: first_name,",
+									"    lastName: last_name,",
+									"    gender: gender,",
+									"    dateOfBirth: date_of_birth,",
+									"    phoneNumber: phone,",
+									"    email: email,",
+									"    password: '12345678',",
+									"};",
+									"console.log(params);",
+									"",
+									"for (const key in params) {",
+									"    pm.collectionVariables.set(key, params[key]);",
+									"};"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/app/?first_name={{firstName}}&last_name={{lastName}}&gender={{gender}}&date_of_birth={{dateOfBirth}}&phone={{phoneNumber}}&email={{email}}&password={{password}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"app",
+								""
+							],
+							"query": [
+								{
+									"key": "first_name",
+									"value": "{{firstName}}"
+								},
+								{
+									"key": "last_name",
+									"value": "{{lastName}}"
+								},
+								{
+									"key": "gender",
+									"value": "{{gender}}"
+								},
+								{
+									"key": "date_of_birth",
+									"value": "{{dateOfBirth}}"
+								},
+								{
+									"key": "phone",
+									"value": "{{phoneNumber}}"
+								},
+								{
+									"key": "email",
+									"value": "{{email}}"
+								},
+								{
+									"key": "password",
+									"value": "{{password}}"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Account",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/app/?first_name={{firstName}}&last_name={{lastName}}&gender={{gender}}&date_of_birth={{dateOfBirth}}&phone={{phoneNumber}}&email={{email}}&password={{password}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"app",
+										""
+									],
+									"query": [
+										{
+											"key": "first_name",
+											"value": "{{firstName}}"
+										},
+										{
+											"key": "last_name",
+											"value": "{{lastName}}"
+										},
+										{
+											"key": "gender",
+											"value": "{{gender}}"
+										},
+										{
+											"key": "date_of_birth",
+											"value": "{{dateOfBirth}}"
+										},
+										{
+											"key": "phone",
+											"value": "{{phoneNumber}}"
+										},
+										{
+											"key": "email",
+											"value": "{{email}}"
+										},
+										{
+											"key": "password",
+											"value": "{{password}}"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.3.4 Python/3.12.4"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Jul 2024 12:35:15 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1869"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "    \n<!DOCTYPE html>\n<html>\n    <head>\n        <title>Login Form</title>\n    </head>\n    <body>\n        <h1>Hello Flask app</h1>\n        <form id=\"login-form\">\n            <input type=\"text\" name=\"first_name\" placeholder=\"first name\">\n            <input type=\"text\" name=\"last_name\" placeholder=\"last name\">\n            <input type=\"text\" name=\"gender\" placeholder=\"gender\">\n            <input type=\"text\" name=\"date_of_birth\" placeholder=\"dob\">\n            <input type=\"text\" name=\"phone\" placeholder=\"phone\">\n            <input type=\"text\" name=\"email\" placeholder=\"email\">\n            <input type=\"password\" name=\"password\" placeholder=\"password\">\n            <input type=\"submit\" value=\"Login\">\n    \n        </form>\n        <script>\n        document.getElementById(\"login-form\").addEventListener(\"submit\", function(event) {\n            event.preventDefault();\n            const formElements = event.target.elements;\n            const formData = {};\n            for (const element of formElements) {\n                if (element.name) {\n                    formData[element.name] = element.value;\n                }\n            }\n            // Send form data as JSON\n            fetch(\"/app/users\", {\n                method: \"POST\",\n                headers: {\n                    \"Content-Type\": \"application/json\"\n                },\n                body: JSON.stringify(formData)\n            })\n            .then(response => response.json())\n            .then(data => {\n                // Handle the response from the server\n                console.log(\"Browser logged in, you can now make requests in this window\")\n                console.log(data);\n                alert(\n                    'Browser logged in, you can now make requests in this window' + '\n' + data\n                );\n            })\n            .catch(error => {\n                console.error(\"Error:\", error);\n            });\n        });\n    </script>\n    </body>\n</html>"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Create User",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"let first_name = pm.variables.replaceIn('{{$randomFirstName}}');",
+									"let last_name = pm.variables.replaceIn('{{$randomLastName}}');",
+									"let gender = pm.variables.replaceIn('{{$randomBoolean}}') ? 'male' : 'female';",
+									"let date_of_birth = pm.variables.replaceIn('{{$isoTimestamp}}').slice(0, -1);",
+									"let phone = pm.variables.replaceIn('{{$randomPhoneNumber}}');",
+									"let email = pm.variables.replaceIn('{{$randomEmail}}');",
+									"",
+									"let params = {",
+									"    firstName: first_name,",
+									"    lastName: last_name,",
+									"    gender: gender,",
+									"    dateOfBirth: date_of_birth,",
+									"    phoneNumber: phone,",
+									"    email: email,",
+									"    password: '12345678',",
+									"};",
+									"",
+									"for (const key in params) {",
+									"    pm.collectionVariables.set(key, params[key]);",
+									"};"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 201\", () => {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"Response is JSON\", () => {",
+									"    pm.response.to.be.json;",
+									"})",
+									"",
+									"pm.test(\"Response body structure is valid\", () => {",
+									"    const schema = {",
+									"        type: \"object\",",
+									"        properties: {",
+									"            message: { type: \"string\" },",
+									"            user: {",
+									"                type: \"object\",",
+									"                properties: {",
+									"                    created_at: { type: \"string\" },",
+									"                    date_of_birth: { type: \"string\" },",
+									"                    email: { type: \"string\", format: \"email\" },",
+									"                    first_name: { type: \"string\" },",
+									"                    gender: { type: \"string\" },",
+									"                    id: { type: \"string\" },",
+									"                    last_name: { type: \"string\" },",
+									"                    phone: { type: \"string\" }",
+									"                },",
+									"                required: [\"created_at\", \"date_of_birth\", \"email\", \"first_name\", \"gender\", \"id\", \"last_name\", \"phone\"]",
+									"            }",
+									"        },",
+									"        required: [\"message\", \"user\"]",
+									"    };",
+									"    pm.response.to.have.jsonSchema(schema);",
+									"});",
+									"",
+									"pm.test(\"Response attributes are correct\", () => {",
+									"    pm.expect(response.user.first_name).to.eql(pm.variables.replaceIn('{{firstName}}'));",
+									"    pm.expect(response.user.last_name).to.eql(pm.variables.replaceIn('{{lastName}}'));",
+									"    pm.expect(response.user.phone).to.eql(pm.variables.replaceIn('{{phoneNumber}}'));",
+									"    pm.expect(response.user.email).to.eql(pm.variables.replaceIn('{{email}}'));",
+									"    pm.expect(response.user.gender).to.eql(pm.variables.replaceIn('{{gender}}'));",
+									"    pm.expect(response.user.date_of_birth).to.eql(pm.variables.replaceIn('{{dateOfBirth}}'));",
+									"    pm.collectionVariables.set(\"id\", response.user.id);",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"first_name\": \"{{firstName}}\",\r\n    \"last_name\": \"{{lastName}}\",\r\n    \"gender\": \"{{gender}}\",\r\n    \"date_of_birth\": \"{{dateOfBirth}}\",\r\n    \"email\": \"{{email}}\",\r\n    \"phone\": \"{{phoneNumber}}\",\r\n    \"password\": \"{{password}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/app/users/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"app",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Users",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response is JSON\", () => {",
+									"    pm.response.to.be.json;",
+									"})",
+									"",
+									"pm.test(\"Response schema is valid\", function () {",
+									"    const schema = {",
+									"        type: 'array',",
+									"        items: {",
+									"            type: \"object\",",
+									"            properties: {",
+									"                created_at: { type: \"string\" },",
+									"                date_of_birth: { type: \"string\" },",
+									"                email: { type: \"string\", format: \"email\" },",
+									"                first_name: { type: \"string\" },",
+									"                gender: { type: \"string\" },",
+									"                id: { type: \"string\" },",
+									"                last_name: { type: \"string\" },",
+									"                phone: { type: \"string\" }",
+									"            },",
+									"            required: [\"created_at\", \"date_of_birth\", \"email\", \"first_name\", \"gender\", \"id\", \"last_name\", \"phone\"]",
+									"        }",
+									"    };",
+									"    pm.response.to.have.jsonSchema(schema);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/app/users/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"app",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get A User",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response is JSON\", () => {",
+									"    pm.response.to.be.json;",
+									"})",
+									"",
+									"pm.test(\"Response body structure is valid\", () => {",
+									"    const schema = {",
+									"        type: \"object\",",
+									"        properties: {",
+									"            created_at: { type: \"string\" },",
+									"            date_of_birth: { type: \"string\" },",
+									"            email: { type: \"string\", format: \"email\" },",
+									"            first_name: { type: \"string\" },",
+									"            gender: { type: \"string\" },",
+									"            id: { type: \"string\" },",
+									"            last_name: { type: \"string\" },",
+									"            phone: { type: \"string\" }",
+									"        },",
+									"        required: [\"created_at\", \"date_of_birth\", \"email\", \"first_name\", \"gender\", \"id\", \"last_name\", \"phone\"]",
+									"    };",
+									"    pm.response.to.have.jsonSchema(schema);",
+									"});",
+									"",
+									"pm.test(\"Response attributes are correct\", () => {",
+									"    pm.expect(response.first_name).to.eql(pm.variables.replaceIn('{{firstName}}'));",
+									"    pm.expect(response.last_name).to.eql(pm.variables.replaceIn('{{lastName}}'));",
+									"    pm.expect(response.phone).to.eql(pm.variables.replaceIn('{{phoneNumber}}'));",
+									"    pm.expect(response.email).to.eql(pm.variables.replaceIn('{{email}}'));",
+									"    pm.expect(response.gender).to.eql(pm.variables.replaceIn('{{gender}}'));",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/app/users/:userID",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"app",
+								"users",
+								":userID"
+							],
+							"variable": [
+								{
+									"key": "userID",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update A User",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"let first_name = pm.variables.replaceIn('{{$randomFirstName}}');",
+									"let gender;",
+									"",
+									"if (pm.variables.replaceIn('{{$randomBoolean}}') === true) {",
+									"    gender = 'male';",
+									"} else {",
+									"    gender = 'female'",
+									"}",
+									"let phone = pm.variables.replaceIn('{{$randomPhoneNumber}}');",
+									"",
+									"let params = {",
+									"    firstName: first_name,",
+									"    gender: gender,",
+									"    phoneNumber: phone,",
+									"};",
+									"",
+									"for (const key in params) {",
+									"    pm.collectionVariables.set(key, params[key]);",
+									"};"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response is JSON\", () => {",
+									"    pm.response.to.be.json;",
+									"})",
+									"",
+									"pm.test(\"Response body structure is valid\", () => {",
+									"    const schema = {",
+									"        type: \"object\",",
+									"        properties: {",
+									"            created_at: { type: \"string\" },",
+									"            date_of_birth: { type: \"string\" },",
+									"            email: { type: \"string\", format: \"email\" },",
+									"            first_name: { type: \"string\" },",
+									"            gender: { type: \"string\" },",
+									"            id: { type: \"string\" },",
+									"            last_name: { type: \"string\" },",
+									"            phone: { type: \"string\" }",
+									"        },",
+									"        required: [\"created_at\", \"date_of_birth\", \"email\", \"first_name\", \"gender\", \"id\", \"last_name\", \"phone\"]",
+									"    };",
+									"    pm.response.to.have.jsonSchema(schema);",
+									"});",
+									"",
+									"pm.test(\"Response attributes are correct\", () => {",
+									"    pm.expect(response.first_name).to.eql(pm.variables.replaceIn('{{firstName}}'));",
+									"    pm.expect(response.last_name).to.eql(pm.variables.replaceIn('{{lastName}}'));",
+									"    pm.expect(response.phone).to.eql(pm.variables.replaceIn('{{phoneNumber}}'));",
+									"    pm.expect(response.email).to.eql(pm.variables.replaceIn('{{email}}'));",
+									"    pm.expect(response.gender).to.eql(pm.variables.replaceIn('{{gender}}'));",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first_name\": \"{{firstName}}\",\n    \"gender\": \"{{gender}}\",\n    \"phone\": \"{{phoneNumber}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/app/users/:userID",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"app",
+								"users",
+								":userID"
+							],
+							"variable": [
+								{
+									"key": "userID",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get My Events",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response is JSON\", () => {",
+									"    pm.response.to.be.json;",
+									"})",
+									"",
+									"pm.test(\"Response body structure is valid\", () => {",
+									"    const schema = {",
+									"        type: \"array\",",
+									"        items: {",
+									"            type: \"object\",",
+									"            properties: {",
+									"                created_at: { type: \"string\" },",
+									"                date_of_birth: { type: \"string\" },",
+									"                email: { type: \"string\", format: \"email\" },",
+									"                first_name: { type: \"string\" },",
+									"                gender: { type: \"string\" },",
+									"                id: { type: \"string\" },",
+									"                last_name: { type: \"string\" },",
+									"                phone: { type: \"string\" }",
+									"            },",
+									"            required: [\"created_at\", \"date_of_birth\", \"email\", \"first_name\", \"gender\", \"id\", \"last_name\", \"phone\"]",
+									"        }",
+									"    };",
+									"    pm.response.to.have.jsonSchema(schema);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/app/users/events/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"app",
+								"users",
+								"events",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User's Events",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response is JSON\", () => {",
+									"    pm.response.to.be.json;",
+									"})",
+									"",
+									"pm.test(\"Response body structure is valid\", () => {",
+									"    const schema = {",
+									"        type: \"array\",",
+									"        items: {",
+									"            type: \"object\",",
+									"            properties: {",
+									"                created_at: { type: \"string\" },",
+									"                description: { type: \"string\" },",
+									"                end_time: { type: \"string\" },",
+									"                start_time: { type: \"string\" },",
+									"                event_type: { type: \"string\" },",
+									"                host: { type: \"string\" },",
+									"                id: { type: \"string\" },",
+									"                location: { type: \"string\" },",
+									"                name: { type: \"string\" },",
+									"                price: { type: \"string\" },",
+									"            },",
+									"            required: [\"created_at\", \"id\", \"name\"]",
+									"        }",
+									"    };",
+									"    pm.response.to.have.jsonSchema(schema);",
+									"});",
+									"",
+									"pm.test(\"Response host is correct\", () => {",
+									"    const response = pm.response.json();",
+									"    response.forEach((event) => {",
+									"        pm.expect(event.host).to.equal(pm.variables.replaceIn('{{id}}'));",
+									"    });",
+									"    // pm.expect(response.first_name).to.eql(pm.variables.replaceIn('{{firstName}}'));",
+									"    // pm.expect(response.last_name).to.eql(pm.variables.replaceIn('{{lastName}}'));",
+									"    // pm.expect(response.phone).to.eql(pm.variables.replaceIn('{{phoneNumber}}'));",
+									"    // pm.expect(response.email).to.eql(pm.variables.replaceIn('{{email}}'));",
+									"    // pm.expect(response.gender).to.eql(pm.variables.replaceIn('{{gender}}'));",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/app/users/:userID/events/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"app",
+								"users",
+								":userID",
+								"events",
+								""
+							],
+							"variable": [
+								{
+									"key": "userID",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Authenticated",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response is JSON\", () => {",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Status schema is valid\", () => {",
+									"    const schema = {",
+									"        type: \"object\",",
+									"        properties: {",
+									"            authenticated: { type: \"boolean\" },",
+									"            user: {",
+									"                type: \"object\",",
+									"                properties: {",
+									"                    created_at: { type: \"string\" },",
+									"                    date_of_birth: { type: \"string\" },",
+									"                    email: { type: \"string\", format: \"email\" },",
+									"                    first_name: { type: \"string\" },",
+									"                    gender: { type: \"string\" },",
+									"                    id: { type: \"string\" },",
+									"                    last_name: { type: \"string\" },",
+									"                    phone: { type: \"string\" }",
+									"                },",
+									"                required: [\"created_at\", \"date_of_birth\", \"email\", \"first_name\", \"gender\", \"id\", \"last_name\", \"phone\"]",
+									"            }",
+									"        },",
+									"        required: [\"authenticated\", \"user\"]",
+									"    };",
+									"    pm.response.to.have.jsonSchema(schema);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/app/authenticated/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"app",
+								"authenticated",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response is JSON\", () => {",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Status schema is valid\", () => {",
+									"    const schema = {",
+									"        type: 'object',",
+									"        properties: {",
+									"            message: {",
+									"                type: 'string'",
+									"            }",
+									"        },",
+									"        required: ['message'],",
+									"        additionalProperties: false",
+									"    };",
+									"    const body = {",
+									"        message: \"Logged Out\"",
+									"    };",
+									"    pm.response.to.have.jsonSchema(schema);",
+									"    pm.response.to.have.jsonBody(body);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/app/logout/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"app",
+								"logout",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response is JSON\", () => {",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Status schema is valid\", () => {",
+									"    const schema = {",
+									"        type: \"object\",",
+									"        properties: {",
+									"            message: { type: \"string\" },",
+									"            user: {",
+									"                type: \"object\",",
+									"                properties: {",
+									"                    created_at: { type: \"string\" },",
+									"                    date_of_birth: { type: \"string\" },",
+									"                    email: { type: \"string\", format: \"email\" },",
+									"                    first_name: { type: \"string\" },",
+									"                    gender: { type: \"string\" },",
+									"                    id: { type: \"string\" },",
+									"                    last_name: { type: \"string\" },",
+									"                    phone: { type: \"string\" }",
+									"                },",
+									"                required: [\"created_at\", \"date_of_birth\", \"email\", \"first_name\", \"gender\", \"id\", \"last_name\", \"phone\"]",
+									"            }",
+									"        },",
+									"        required: [\"message\", \"user\"]",
+									"    };",
+									"    pm.response.to.have.jsonSchema(schema);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/app/login/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"app",
+								"login",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Events",
+			"item": [
+				{
+					"name": "Create New Event",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 201\", function () {",
+									"  pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"Response is JSON\"), () => {",
+									"    pm.response.to.be.json;",
+									"};",
+									"",
+									"pm.test(\"Response schema is valid\", function () {",
+									"  const schema = {",
+									"    type: \"object\",",
+									"    properties: {",
+									"        message: {",
+									"            type: \"string\"",
+									"        },",
+									"        event: {",
+									"            type: \"object\",",
+									"            properties: {",
+									"                created_at: { type: \"string\" },",
+									"                description: { type: \"string\" },",
+									"                end_time: { type: \"string\" },",
+									"                event_type: { type: \"string\" },",
+									"                host: { type: \"string\" },",
+									"                id: { type: \"string\" },",
+									"                location: { type: \"string\" },",
+									"                name: { type: \"string\" },",
+									"                price: { type: \"number\" },",
+									"                start_time: { type: \"string\" },",
+									"                attendees: {",
+									"                    type: 'array',",
+									"                    items: {",
+									"                        type: \"object\",",
+									"                        properties: {",
+									"                            created_at: { type: \"string\" },",
+									"                            date_of_birth: { type: \"string\" },",
+									"                            email: { type: \"string\", format: \"email\" },",
+									"                            first_name: { type: \"string\" },",
+									"                            gender: { type: \"string\" },",
+									"                            id: { type: \"string\" },",
+									"                            last_name: { type: \"string\" },",
+									"                            phone: { type: \"string\" }",
+									"                        },",
+									"                        required: [\"created_at\", \"date_of_birth\", \"email\", \"first_name\", \"gender\", \"id\", \"last_name\", \"phone\"]",
+									"                    }",
+									"                }",
+									"            },",
+									"            required: [\"created_at\", \"description\", \"end_time\", \"event_type\", \"host\", \"id\", \"location\", \"name\", \"price\", \"start_time\", \"attendees\"],",
+									"            additionalProperties: false",
+									"        }",
+									"    }",
+									"  };",
+									"  pm.response.to.have.jsonSchema(schema);",
+									"});",
+									"",
+									"pm.test(\"Response attributes are correct\", () => {",
+									"    const response = pm.response.json();",
+									"    pm.expect(response.message).to.eql(pm.variables.replaceIn('Event Created'));",
+									"    pm.expect(response.event.location).to.eql(pm.variables.replaceIn('{{location}}'));",
+									"    pm.expect(response.event.name).to.eql(pm.variables.replaceIn('{{name}}'));",
+									"",
+									"    pm.collectionVariables.set(\"eventId\", response.event.id);",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"let start_time = pm.variables.replaceIn('{{$isoTimestamp}}').slice(0, -1);",
+									"let location = pm.variables.replaceIn('{{$randomStreetAddress}}');",
+									"let description = pm.variables.replaceIn('{{$randomPhrase}}');",
+									"let name = pm.variables.replaceIn('{{$randomAdjective}}') + \" \" + pm.variables.replaceIn('{{$randomNoun}}');",
+									"let price =  pm.variables.replaceIn('{{$randomInt}}');",
+									"let event_type;",
+									"if (pm.variables.replaceIn('{{$randomBoolean}}') === true) {",
+									"    event_type = 'private';",
+									"} else {",
+									"    event_type = 'public'",
+									"}",
+									"let end_time = pm.variables.replaceIn('{{$isoTimestamp}}').slice(0, -1);",
+									"",
+									"let params = {",
+									"    startTime: start_time,",
+									"    location,",
+									"    description,",
+									"    name,",
+									"    price,",
+									"    eventType: event_type,",
+									"    endTime: end_time",
+									"};",
+									"",
+									"for (const key in params) {",
+									"    pm.collectionVariables.set(key, params[key]);",
+									"};"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"description\": \"{{description}}\",\n  \"end_time\": \"{{endTime}}\",\n  \"location\": \"{{location}}\",\n  \"name\": \"{{name}}\",\n  \"start_time\": \"{{startTime}}\",\n  \"event_type\": \"{{eventType}}\",\n  \"price\": {{price}}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/app/events/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"app",
+								"events",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update An Event",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"  pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response is JSON\"), () => {",
+									"    pm.response.to.be.json;",
+									"};",
+									"",
+									"pm.test(\"Response schema is valid\", function () {",
+									"    const schema = {",
+									"        type: \"object\",",
+									"        properties: {",
+									"            created_at: { type: \"string\" },",
+									"            description: { type: \"string\" },",
+									"            end_time: { type: \"string\" },",
+									"            event_type: { type: \"string\" },",
+									"            host: { type: \"string\" },",
+									"            id: { type: \"string\" },",
+									"            location: { type: \"string\" },",
+									"            name: { type: \"string\" },",
+									"            price: { type: \"string\" },",
+									"            start_time: { type: \"string\" },",
+									"        },",
+									"        required: [\"created_at\", \"description\", \"end_time\", \"event_type\", \"host\", \"id\", \"location\", \"name\", \"price\", \"start_time\"],",
+									"        additionalProperties: false",
+									"    };",
+									"    pm.response.to.have.jsonSchema(schema);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"let end_time = pm.variables.replaceIn('{{$isoTimestamp}}').slice(0, -1);",
+									"",
+									"let params = {",
+									"    endTime: end_time",
+									"};",
+									"",
+									"for (const key in params) {",
+									"    pm.collectionVariables.set(key, params[key]);",
+									"};"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"end_time\": \"{{endTime}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/app/events/:eventID",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"app",
+								"events",
+								":eventID"
+							],
+							"variable": [
+								{
+									"key": "eventID",
+									"value": "{{eventId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Events",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"  pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Id is a non-empty string\", function () {",
+									"    const responseData = pm.response.json();",
+									"    responseData.forEach(event => {",
+									"        pm.expect(event.id).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Id should be a non-empty string\");",
+									"    });",
+									"});",
+									"",
+									"pm.test(\"Response schema is valid\", function () {",
+									"  const schema = {",
+									"    type: \"array\",",
+									"    items: {",
+									"      type: \"object\",",
+									"      properties: {",
+									"        created_at: { type: \"string\" },",
+									"        description: { type: \"string\" },",
+									"        end_time: { type: \"string\" },",
+									"        event_type: { type: \"string\" },",
+									"        host: { type: \"string\" },",
+									"        id: { type: \"string\" },",
+									"        location: { type: \"string\" },",
+									"        name: { type: \"string\" },",
+									"        price: { type: \"string\" },",
+									"        start_time: { type: \"string\" }",
+									"      },",
+									"      required: [\"created_at\", \"description\", \"end_time\", \"event_type\", \"host\", \"id\", \"location\", \"name\", \"price\", \"start_time\"],",
+									"      additionalProperties: false",
+									"    }",
+									"  };",
+									"  pm.response.to.have.jsonSchema(schema);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/app/events/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"app",
+								"events",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get An Event",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"  pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response is JSON\"), () => {",
+									"    pm.response.to.be.json;",
+									"};",
+									"",
+									"pm.test(\"Response schema is valid\", function () {",
+									"    const schema = {",
+									"        type: \"object\",",
+									"        properties: {",
+									"            created_at: { type: \"string\" },",
+									"            description: { type: \"string\" },",
+									"            end_time: { type: \"string\" },",
+									"            event_type: { type: \"string\" },",
+									"            host: { type: \"string\" },",
+									"            id: { type: \"string\" },",
+									"            location: { type: \"string\" },",
+									"            name: { type: \"string\" },",
+									"            price: { type: \"string\" },",
+									"            start_time: { type: \"string\" },",
+									"        },",
+									"        required: [\"created_at\", \"description\", \"end_time\", \"event_type\", \"host\", \"id\", \"location\", \"name\", \"price\", \"start_time\"],",
+									"        additionalProperties: false",
+									"    };",
+									"    pm.response.to.have.jsonSchema(schema);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"let start_time = pm.variables.replaceIn('{{$isoTimestamp}}').slice(0, -1);",
+									"let location = pm.variables.replaceIn('{{$randomStreetAddress}}');",
+									"let description = pm.variables.replaceIn('{{$randomPhrase}}');",
+									"let name = pm.variables.replaceIn('{{$randomAdjective}}') + \" \" + pm.variables.replaceIn('{{$randomNoun}}');",
+									"let price =  pm.variables.replaceIn('{{$randomInt}}');",
+									"let event_type;",
+									"if (pm.variables.replaceIn('{{$randomBoolean}}') === true) {",
+									"    event_type = 'private';",
+									"} else {",
+									"    event_type = 'public'",
+									"}",
+									"let end_time = pm.variables.replaceIn('{{$isoTimestamp}}').slice(0, -1);",
+									"",
+									"let params = {",
+									"    startTime: start_time,",
+									"    location,",
+									"    description,",
+									"    name,",
+									"    price,",
+									"    eventType: event_type,",
+									"    endTime: end_time",
+									"};",
+									"",
+									"for (const key in params) {",
+									"    pm.collectionVariables.set(key, params[key]);",
+									"};"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/app/events/:eventID",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"app",
+								"events",
+								":eventID"
+							],
+							"variable": [
+								{
+									"key": "eventID",
+									"value": "{{eventId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get An Event Attendees",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"  pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response is JSON\"), () => {",
+									"    pm.response.to.be.json;",
+									"};",
+									"",
+									"pm.test(\"Response schema is valid\", function () {",
+									"    const schema = {",
+									"        type: 'array',",
+									"        items: {",
+									"            type: \"object\",",
+									"            properties: {",
+									"                created_at: { type: \"string\" },",
+									"                date_of_birth: { type: \"string\" },",
+									"                email: { type: \"string\", format: \"email\" },",
+									"                first_name: { type: \"string\" },",
+									"                gender: { type: \"string\" },",
+									"                id: { type: \"string\" },",
+									"                last_name: { type: \"string\" },",
+									"                phone: { type: \"string\" }",
+									"            },",
+									"            required: [\"created_at\", \"date_of_birth\", \"email\", \"first_name\", \"gender\", \"id\", \"last_name\", \"phone\"]",
+									"        }",
+									"    };",
+									"    pm.response.to.have.jsonSchema(schema);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"let start_time = pm.variables.replaceIn('{{$isoTimestamp}}').slice(0, -1);",
+									"let location = pm.variables.replaceIn('{{$randomStreetAddress}}');",
+									"let description = pm.variables.replaceIn('{{$randomPhrase}}');",
+									"let name = pm.variables.replaceIn('{{$randomAdjective}}') + \" \" + pm.variables.replaceIn('{{$randomNoun}}');",
+									"let price =  pm.variables.replaceIn('{{$randomInt}}');",
+									"let event_type;",
+									"if (pm.variables.replaceIn('{{$randomBoolean}}') === true) {",
+									"    event_type = 'private';",
+									"} else {",
+									"    event_type = 'public'",
+									"}",
+									"let end_time = pm.variables.replaceIn('{{$isoTimestamp}}').slice(0, -1);",
+									"",
+									"let params = {",
+									"    startTime: start_time,",
+									"    location,",
+									"    description,",
+									"    name,",
+									"    price,",
+									"    eventType: event_type,",
+									"    endTime: end_time",
+									"};",
+									"",
+									"for (const key in params) {",
+									"    pm.collectionVariables.set(key, params[key]);",
+									"};"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/app/events/:eventID/attend",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"app",
+								"events",
+								":eventID",
+								"attend"
+							],
+							"variable": [
+								{
+									"key": "eventID",
+									"value": "{{eventId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Second User",
+			"item": [
+				{
+					"name": "Create User",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"let first_name = pm.variables.replaceIn('{{$randomFirstName}}');",
+									"let last_name = pm.variables.replaceIn('{{$randomLastName}}');",
+									"let gender = pm.variables.replaceIn('{{$randomBoolean}}') ? 'male' : 'female';",
+									"let date_of_birth = pm.variables.replaceIn('{{$isoTimestamp}}').slice(0, -1);",
+									"let phone = pm.variables.replaceIn('{{$randomPhoneNumber}}');",
+									"let email = pm.variables.replaceIn('{{$randomEmail}}');",
+									"",
+									"let params = {",
+									"    firstName: first_name,",
+									"    lastName: last_name,",
+									"    gender: gender,",
+									"    dateOfBirth: date_of_birth,",
+									"    phoneNumber: phone,",
+									"    email: email,",
+									"    password: '12345678',",
+									"};",
+									"",
+									"for (const key in params) {",
+									"    pm.collectionVariables.set(key, params[key]);",
+									"};"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 201\", () => {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"Response is JSON\", () => {",
+									"    pm.response.to.be.json;",
+									"})",
+									"",
+									"pm.test(\"Response body structure is valid\", () => {",
+									"    const schema = {",
+									"        type: \"object\",",
+									"        properties: {",
+									"            message: { type: \"string\" },",
+									"            user: {",
+									"                type: \"object\",",
+									"                properties: {",
+									"                    created_at: { type: \"string\" },",
+									"                    date_of_birth: { type: \"string\" },",
+									"                    email: { type: \"string\", format: \"email\" },",
+									"                    first_name: { type: \"string\" },",
+									"                    gender: { type: \"string\" },",
+									"                    id: { type: \"string\" },",
+									"                    last_name: { type: \"string\" },",
+									"                    phone: { type: \"string\" }",
+									"                },",
+									"                required: [\"created_at\", \"date_of_birth\", \"email\", \"first_name\", \"gender\", \"id\", \"last_name\", \"phone\"]",
+									"            }",
+									"        },",
+									"        required: [\"message\", \"user\"]",
+									"    };",
+									"    pm.response.to.have.jsonSchema(schema);",
+									"});",
+									"",
+									"pm.test(\"Response attributes are correct\", () => {",
+									"    pm.expect(response.user.first_name).to.eql(pm.variables.replaceIn('{{firstName}}'));",
+									"    pm.expect(response.user.last_name).to.eql(pm.variables.replaceIn('{{lastName}}'));",
+									"    pm.expect(response.user.phone).to.eql(pm.variables.replaceIn('{{phoneNumber}}'));",
+									"    pm.expect(response.user.email).to.eql(pm.variables.replaceIn('{{email}}'));",
+									"    pm.expect(response.user.gender).to.eql(pm.variables.replaceIn('{{gender}}'));",
+									"    pm.expect(response.user.date_of_birth).to.eql(pm.variables.replaceIn('{{dateOfBirth}}'));",
+									"    pm.collectionVariables.set(\"id\", response.user.id);",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"first_name\": \"{{firstName}}\",\r\n    \"last_name\": \"{{lastName}}\",\r\n    \"gender\": \"{{gender}}\",\r\n    \"date_of_birth\": \"{{dateOfBirth}}\",\r\n    \"email\": \"{{email}}\",\r\n    \"phone\": \"{{phoneNumber}}\",\r\n    \"password\": \"{{password}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/app/users/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"app",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Attend An Event",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 201\", function () {",
+									"  pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"Response is JSON\"), () => {",
+									"    pm.response.to.be.json;",
+									"};",
+									"",
+									"pm.test(\"Response schema is valid\", function () {",
+									"    const schema = {",
+									"        type: \"object\",",
+									"        properties: {",
+									"            message: {",
+									"                type: \"string\"",
+									"            },",
+									"            event: {",
+									"                type: \"object\",",
+									"                properties: {",
+									"                    created_at: { type: \"string\" },",
+									"                    description: { type: \"string\" },",
+									"                    end_time: { type: \"string\" },",
+									"                    event_type: { type: \"string\" },",
+									"                    host: { type: \"string\" },",
+									"                    id: { type: \"string\" },",
+									"                    location: { type: \"string\" },",
+									"                    name: { type: \"string\" },",
+									"                    price: { type: \"string\" },",
+									"                    start_time: { type: \"string\" },",
+									"                    attendees: {",
+									"                        type: 'array',",
+									"                        items: {",
+									"                            type: \"object\",",
+									"                            properties: {",
+									"                                created_at: { type: \"string\" },",
+									"                                date_of_birth: { type: \"string\" },",
+									"                                email: { type: \"string\", format: \"email\" },",
+									"                                first_name: { type: \"string\" },",
+									"                                gender: { type: \"string\" },",
+									"                                id: { type: \"string\" },",
+									"                                last_name: { type: \"string\" },",
+									"                                phone: { type: \"string\" }",
+									"                            },",
+									"                            required: [\"created_at\", \"date_of_birth\", \"email\", \"first_name\", \"gender\", \"id\", \"last_name\", \"phone\"]",
+									"                        }",
+									"                    }",
+									"                },",
+									"                required: [\"created_at\", \"description\", \"end_time\", \"event_type\", \"host\", \"id\", \"location\", \"name\", \"price\", \"start_time\", \"attendees\"],",
+									"                additionalProperties: false",
+									"            }",
+									"        }",
+									"    };",
+									"    pm.response.to.have.jsonSchema(schema);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"let start_time = pm.variables.replaceIn('{{$isoTimestamp}}').slice(0, -1);",
+									"let location = pm.variables.replaceIn('{{$randomStreetAddress}}');",
+									"let description = pm.variables.replaceIn('{{$randomPhrase}}');",
+									"let name = pm.variables.replaceIn('{{$randomAdjective}}') + \" \" + pm.variables.replaceIn('{{$randomNoun}}');",
+									"let price =  pm.variables.replaceIn('{{$randomInt}}');",
+									"let event_type;",
+									"if (pm.variables.replaceIn('{{$randomBoolean}}') === true) {",
+									"    event_type = 'private';",
+									"} else {",
+									"    event_type = 'public'",
+									"}",
+									"let end_time = pm.variables.replaceIn('{{$isoTimestamp}}').slice(0, -1);",
+									"",
+									"let params = {",
+									"    startTime: start_time,",
+									"    location,",
+									"    description,",
+									"    name,",
+									"    price,",
+									"    eventType: event_type,",
+									"    endTime: end_time",
+									"};",
+									"",
+									"for (const key in params) {",
+									"    pm.collectionVariables.set(key, params[key]);",
+									"};"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": \"{{id}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/app/events/:eventID/attend",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"app",
+								"events",
+								":eventID",
+								"attend"
+							],
+							"variable": [
+								{
+									"key": "eventID",
+									"value": "{{eventId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get My Events",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response is JSON\", () => {",
+									"    pm.response.to.be.json;",
+									"})",
+									"",
+									"pm.test(\"Response body structure is valid\", () => {",
+									"    const schema = {",
+									"        type: \"array\",",
+									"        items: {",
+									"            type: \"object\",",
+									"            properties: {",
+									"                created_at: { type: \"string\" },",
+									"                date_of_birth: { type: \"string\" },",
+									"                email: { type: \"string\", format: \"email\" },",
+									"                first_name: { type: \"string\" },",
+									"                gender: { type: \"string\" },",
+									"                id: { type: \"string\" },",
+									"                last_name: { type: \"string\" },",
+									"                phone: { type: \"string\" }",
+									"            },",
+									"            required: [\"created_at\", \"date_of_birth\", \"email\", \"first_name\", \"gender\", \"id\", \"last_name\", \"phone\"]",
+									"        }",
+									"    };",
+									"    pm.response.to.have.jsonSchema(schema);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/app/users/events/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"app",
+								"users",
+								"events",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Events",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"  pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Id is a non-empty string\", function () {",
+									"    const responseData = pm.response.json();",
+									"    responseData.forEach(event => {",
+									"        pm.expect(event.id).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Id should be a non-empty string\");",
+									"    });",
+									"});",
+									"",
+									"pm.test(\"Response schema is valid\", function () {",
+									"  const schema = {",
+									"    type: \"array\",",
+									"    items: {",
+									"      type: \"object\",",
+									"      properties: {",
+									"        created_at: { type: \"string\" },",
+									"        description: { type: \"string\" },",
+									"        end_time: { type: \"string\" },",
+									"        event_type: { type: \"string\" },",
+									"        host: { type: \"string\" },",
+									"        id: { type: \"string\" },",
+									"        location: { type: \"string\" },",
+									"        name: { type: \"string\" },",
+									"        price: { type: \"string\" },",
+									"        start_time: { type: \"string\" }",
+									"      },",
+									"      required: [\"created_at\", \"description\", \"end_time\", \"event_type\", \"host\", \"id\", \"location\", \"name\", \"price\", \"start_time\"],",
+									"      additionalProperties: false",
+									"    }",
+									"  };",
+									"  pm.response.to.have.jsonSchema(schema);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/app/events/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"app",
+								"events",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://lets-attend-api.jesulayomi.tech",
+			"type": "string"
+		},
+		{
+			"key": "gender",
+			"value": ""
+		},
+		{
+			"key": "email",
+			"value": ""
+		},
+		{
+			"key": "firstName",
+			"value": ""
+		},
+		{
+			"key": "lastName",
+			"value": ""
+		},
+		{
+			"key": "dateOfBirth",
+			"value": ""
+		},
+		{
+			"key": "phoneNumber",
+			"value": ""
+		},
+		{
+			"key": "password",
+			"value": ""
+		},
+		{
+			"key": "id",
+			"value": ""
+		},
+		{
+			"key": "startTime",
+			"value": ""
+		},
+		{
+			"key": "location",
+			"value": ""
+		},
+		{
+			"key": "description",
+			"value": ""
+		},
+		{
+			"key": "name",
+			"value": ""
+		},
+		{
+			"key": "price",
+			"value": ""
+		},
+		{
+			"key": "eventType",
+			"value": ""
+		},
+		{
+			"key": "endTime",
+			"value": ""
+		},
+		{
+			"key": "eventId",
+			"value": ""
+		}
+	]
+}

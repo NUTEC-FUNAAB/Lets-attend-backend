@@ -69,6 +69,21 @@ def not_found(err):
     return response
 
 
+@app.errorhandler(401)
+def unauthorized(err):
+    """
+        Returns 401 Error For unauthorized route
+    ---
+    responses:
+      200:
+        description: A successful response
+        examples:
+            401: "Unauthorized"
+    """
+    response = make_response(jsonify({'Error': 'Unauthorized'}), 401)
+    return response
+
+
 contact = '{"Name": "Aina Jesulayomi", "Email": "jesulayomi081@gmail.com" }'
 app.config['SWAGGER'] = {
     'title': "Let's Attend API",

@@ -1,7 +1,8 @@
+[![API Tests](https://github.com/NUTEC-FUNAAB/Lets-attend-backend/actions/workflows/postman.yml/badge.svg)](https://github.com/NUTEC-FUNAAB/Lets-attend-backend/actions/workflows/postman.yml)
 # Let's Attend
 
 ### Introduction
-Let's attend is an event management system that allows users to create, manage and join events.
+Let's attend is an event management system that allows users to create, manage and join events. This is the Backend API for the Let's Attend application. The API is built using Flask and MySQL.
 
 ### Features
 * Create events
@@ -13,7 +14,7 @@ Let's attend is an event management system that allows users to create, manage a
 * Event notifications and reminders
 
 ### Installation (Linux)
-Create the database with the config/regen.sql file. Ensure that your password
+Create the database with the docs/regen.sql file. Ensure that your password
 corresponds to the sql password requirements. `you need to have MySQL installed for the db`
 
 regen.sql
@@ -58,5 +59,27 @@ flask run
 gunicorn --access-logfile access.log --error-logfile error.log --bind 0.0.0.0:5000 api.app:app
 ```
 
-### Installation (Windows)
-Null
+### API Documentation
+
+The API documentation and schema can be found on the `/docs` route of the application.
+
+### Testing
+
+To run the tests, import the postman collection from the configs folder and run the tests as a collection or alone in postman. (Ensure to set the proper baseUrl variable)
+
+> Note: Automated tests are run on push to this repository. The tests require the application to be running.
+
+### Contributing
+
+Only members of the NUTEC FUNAAB can contribute to this project. If you are not a member and would lie to contribute, please contact the maintainers.
+
+- Fork the repository
+- Clone the repository
+- Create a branch from the `main` branch
+- Make your changes
+- Push your changes to your fork
+- Open a pull request to the `main` branch
+- Wait for the maintainers to review your changes
+- If your changes are approved, they will be merged into the `main` branch for all to use
+
+---

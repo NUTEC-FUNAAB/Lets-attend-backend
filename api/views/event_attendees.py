@@ -47,14 +47,24 @@ def attend(event_id):
     elif request.method == 'POST':
         if current_user.id == event.host:
             session.close()
-            abort(405, description='You do not need to attend your own event')
+            return make_response(
+                jsonify({
+                    'message': 'You do not need to attend your own event'
+                }),
+                405
+            )
         if request.args.get('user_id'):
             event.attendees.append(
                 storage.get('User', request.get('user_id')))
         else:
             if current_user.id in [user.id for user in event.attendees]:
                 session.close()
-                abort(405, description='You are already attending this event')
+                return make_response(jsonify({
+                    'message': 'You are already attending {}'.format(
+                        event.name
+                    ),
+                    'event': event.to_dict(),
+                }), 201)
         event.attendees.append(storage.get('User', current_user.id))
         session.add(event)
         session.commit()

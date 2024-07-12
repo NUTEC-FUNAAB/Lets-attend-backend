@@ -55,7 +55,7 @@ def all_events():
         event.attendees.append(user)
         storage.new(event)
         resp = make_response(jsonify({
-            'message': 'Event Createtd',
+            'message': 'Event Created',
             'event': event.to_dict()
             }), 201)
         return resp
@@ -81,17 +81,25 @@ def event_manager(event_id):
     """ Handlesevent methods """
     if request.method == 'GET':
         event = storage.get('Event', event_id)
-        return make_response(
-            jsonify({'event': event.to_dict()}), 200
-        )
+        if event:
+            return make_response(
+                jsonify(event.to_dict()), 200
+            )
+        else:
+            return make_response(
+                jsonify({'message': 'Event not found'}), 404
+            )
     elif request.method == 'PUT':
         data = request.get_json()
         event = storage.get('Event', event_id)
-        for key, value in data.items():
-            if key != 'id' and key != 'created_at':
-                setattr(event, key, value)
-            storage.new(event)
+        if event:
+            for key, value in data.items():
+                if key != 'id' and key != 'created_at':
+                    setattr(event, key, value)
+                storage.new(event)
             return make_response(jsonify(event.to_dict()), 200)
+        else:
+            return make_response(jsonify({'message': 'Event not found'}), 404)
     elif request.method == 'DELETE':
         event = storage.get('Event', event_id)
         storage.delete(event)

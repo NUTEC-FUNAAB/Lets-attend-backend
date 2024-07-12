@@ -4,6 +4,7 @@ from flasgger.utils import swag_from
 from flask import (
     make_response,
     jsonify,
+    redirect,
 )
 
 from api.views import app_views
@@ -43,19 +44,21 @@ def index():
     <title>Login Form</title>
     </head>
     <body>
-    <h1>Hello Flask app</h1>
+    <h1>Hello Stranger!</h1>
     <form id="login-form">
-    <input type="text" name="first_name" placeholder="first name">
-    <input type="text" name="last_name" placeholder="last name">
-    <input type="text" name="gender" placeholder="gender">
-    <input type="text" name="date_of_birth" placeholder="dob">
-    <input type="text" name="phone" placeholder="phone">
-    <input type="text" name="email" placeholder="email">
-    <input type="password" name="password" placeholder="password">
-    <input type="submit" value="Login">
+        <input type="text" name="first_name" placeholder="first name">
+        <input type="text" name="last_name" placeholder="last name">
+        <input type="text" name="gender" placeholder="gender">
+        <input type="text" name="date_of_birth" placeholder="dob">
+        <input type="text" name="phone" placeholder="phone">
+        <input type="text" name="email" placeholder="email">
+        <input type="password" name="password" placeholder="password">
+        <input type="submit" value="Create">
     </form>
     <script>
-        document.getElementById("login-form").addEventListener("submit", function(event) {
+        document.getElementById("login-form").addEventListener(
+        "submit",
+        function(event) {
             event.preventDefault();
             const formElements = event.target.elements;
             const formData = {};
@@ -65,7 +68,7 @@ def index():
                 }
             }
             // Send form data as JSON
-            fetch("/api/users", {
+            fetch("/app/users", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -75,7 +78,11 @@ def index():
             .then(response => response.json())
             .then(data => {
                 // Handle the response from the server
+                console.log("Cookies Set")
                 console.log(data);
+                alert(
+                    'Browser logged in, you can now make requests in this window' + '\n' + data
+                );
             })
             .catch(error => {
                 console.error("Error:", error);

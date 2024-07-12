@@ -71,7 +71,13 @@ def create_user():
                 )
     data = request.get_json()
     instance = User(**data)
-    storage.new(instance)
+    try:
+        storage.new(instance)
+    except Exception:
+        return make_response(
+            jsonify({'message': 'User already exists or invalid data'}),
+            409
+        )
     storage.save()
     login_user(instance, remember=True, duration=timedelta(days=30))
     token = jwt.encode(

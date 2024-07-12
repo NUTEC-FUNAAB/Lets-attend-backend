@@ -4,15 +4,20 @@ tags:
   - Core
 parameters:
   - in: body
-    name: email
-    description: Email of the user to login
+    name: auth
+    description: Email and Password 
     required: true
-    type: string
-  - in: body
-    name: password
-    description: Password of the user to login
-    required: true
-    type: string
+    schema:
+      type: object
+      properties:
+        email:
+          type: string
+          description: Email of the user
+          example: JohnDoe@gmail.com
+        password:
+          type: string
+          description: Password of the user
+          example: JohnPassword
 responses:
   200:
     description: User logged in successfully
